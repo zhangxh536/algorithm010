@@ -25,7 +25,7 @@ class Solution {
         int left = 0;//左节点指针
         int right = height.length - 1;//右节点指针
         int cap = 0;//计算容量
-        int maxCap = 0;//最大容量
+        int maxCap = 0;//最大容量lll
         while (left < right) {
             if (height[left] < height[right]) {
                 cap = height[left] * (right - left);//数学公式
