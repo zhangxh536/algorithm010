@@ -17,20 +17,37 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public void moveZeroes(int[] nums) {
-        //指针
+        //指针-----------------------------我的思路
         int count = 0;
-        int index = 0;//只需要去找不等于0的数，将不等于0的数字按指针往下加即可
+        int index = 0;
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0 ) {
+            if (nums[i] != 0) {
                 nums[index++] = nums[i];
             } else {
                 count++;
             }
-
         }
         for (int i = 0; i < count; i++) {
             nums[nums.length - i - 1] = 0;
         }
     }
 }
+
+class Solution {
+    public void moveZeroes(int[] nums) {
+        //指针-----------------------------同学的思路
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                count++;
+            } else if (count > 0) {
+                nums[i - nums] = nums[i];//与为0的进行交换
+                nums[i] = 0;
+            }
+        }
+    }
+}
+
+
+
 //leetcode submit region end(Prohibit modification and deletion)
