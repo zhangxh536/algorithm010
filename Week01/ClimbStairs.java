@@ -32,12 +32,11 @@ class Solution {
         if (n <= 2) {
             return n;
         }
-        for (int i = 3; i <= n; i++) {
-            int fnext = f1 + f2;
-            f1 = f2;//升阶
-            f2 = fnext;//不断的把fnext 赋给f2
+        for (int i = 3; i <= n; i++) {//等号计算n层
+            int fnext = f1 + f2;//初始f3
+            f1 = f2;
+            f2 = fnext;//相当于每次结束把f1和f2升阶
         }
-        return f2;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
