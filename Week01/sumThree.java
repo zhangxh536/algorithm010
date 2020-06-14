@@ -25,21 +25,22 @@ class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> ret = new LinkedList<>();
-        for (int i = 0; i < nums.length - 2; i++) {//由于是3个数，所以到lenght-2只有一个解就结束了
-            int j = i + 1, k = nums.length - 1;//next节点和尾节点
-            if (nums[i] > 0) break;//由于排序了第一个数(最小数)都是正数的话就不可能为0了
-            if (i > 0 && nums[i] == nums[i - 1]) continue;//重复数跳过
-            while (j < k) {
-                int sum = nums[i] + nums[j] + nums[k];//三数之和
-                if (sum < 0) {//说明nums[j] + nums[k]的结果正数较小 next指针继续往大的数移动
-                    while (j < k && nums[j] == nums[++j]);
-                } else if (sum > 0) { //说明nums[j] + nums[k]的结果正数较大 尾指针继续往小的数移动
-                    while (j < k && nums[k] == nums[--k]);
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (nums[i] > 0) break;;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int a = i + 1 , b = nums.length - 1;
+            while (a < b) {
+                int sum = nums[i] + nums[a] + nums[b];
+                if (sum < 0) {
+                    while (a < b && nums[a] == nums[++a]);
+                } else if (sum > 0) {
+                    while (a < b && nums[b] == nums[--b]);
                 } else {
-                    ret.add(new ArrayList<Integer>(Arrays.asList(nums[i],nums[j],nums[k])));//为0就加入list
-                    while (j < k && nums[j] == nums[++j]);
-                    while (j < k && nums[k] == nums[--k]);
+                    ret.add(new ArrayList<Integer>(Arrays.asList(nums[a],nums[b],nums[i])));
+                    while (a < b && nums[a] == nums[++a]);
+                    while (a < b && nums[b] == nums[--b]);
                 }
+
             }
         }
         return ret;
