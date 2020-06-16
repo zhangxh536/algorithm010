@@ -24,52 +24,49 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String longestCommonPrefix(String[] strs) {
-        class Solution {
-            public String longestCommonPrefix(String[] strs) {
-                //找到字符数组中最短的字符(遍历数组判断与该字符的相同的最小数)
-                if (strs.length == 0) {
+        //找到字符数组中最短的字符(遍历数组判断与该字符的相同的最小数)
+        if (strs.length == 0 || strs.length == null) {
+            return "";
+        } else if (strs.length == 1) {
+            return strs[0];
+        }
+        else {
+            for (int i = 0; i < strs.length; i++) {
+                if (strs[i].length() == 0) {
                     return "";
-                } else if (strs.length == 1) {
-                    return strs[0];
                 }
-                else {
-                    for (int i = 0; i < strs.length; i++) {
-                        if (strs[i].length() == 0) {
-                            return "";
-                        }
-                    }
-                    char first = strs[0].charAt(0);//定义第一个字符,但凡有一个与之不同就没有公共的前缀
-                    int min = strs[0].length();//最小字符长度
-                    int minindex = 0;//最小字符下标
-                    for (int i = 0; i < strs.length; i++) {
-                        if (strs[i].charAt(0) != first) {
-                            return "";
-                        }
-                        if (strs[i].length() < min) {
-                            min = strs[i].length();
-                            minindex = i;
-                        }
-                    }
-                    String db = strs[minindex];
-                    int count = 0;
-                    int minret = strs[minindex].length();
-                    for (int i = 0; i < strs.length; i++) {
-                        if (i == minindex) continue;//不用重复比
-                        for (int j = 0; j < strs[minindex].length(); j++) {
-                            if (strs[i].charAt(j) != db.charAt(j)) {
-                                break;
-                            } else {
-                                count++;
-                            }
-                        }
-                        if (count < minret) {
-                            minret = count;
-                        }
-                        count = 0;
-                    }
-                    return (strs[minindex].substring(0,minret));
+
+            }
+            char first = strs[0].charAt(0);//定义第一个字符,但凡有一个与之不同就没有公共的前缀
+            int min = strs[0].length();//最小字符长度
+            int minindex = 0;//最小字符下标
+            for (int i = 0; i < strs.length; i++) {
+                if (strs[i].charAt(0) != first) {
+                    return "";
+                }
+                if (strs[i].length() < min) {
+                    min = strs[i].length();
+                    minindex = i;
                 }
             }
+            String db = strs[minindex];
+            int count = 0;
+            int minret = strs[minindex].length();
+            for (int i = 0; i < strs.length; i++) {
+                if (i == minindex) continue;//不用重复比
+                for (int j = 0; j < strs[minindex].length(); j++) {
+                    if (strs[i].charAt(j) != db.charAt(j)) {
+                        break;
+                    } else {
+                        count++;
+                    }
+                }
+                if (count < minret) {
+                    minret = count;
+                }
+                count = 0;
+            }
+            return (strs[minindex].substring(0,minret));
         }
     }
 }
