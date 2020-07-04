@@ -51,20 +51,34 @@
  *     }
  * }
  */
+//public class Solution {
+//    public boolean hasCycle(ListNode head) {
+//        //双指针法
+//        if (null == head || null == head.next) return false;
+//        ListNode slow = head;
+//        ListNode fast = head.next;
+//        while (slow != fast) {
+//            if (null == fast || null == fast.next) {
+//                return false;
+//            }
+//            slow = slow.next;//慢指针走1步
+//            fast = fast.next.next;//快指针走两部
+//        }
+//        return true;
+//    }
+//}
+
 public class Solution {
     public boolean hasCycle(ListNode head) {
-        //双指针法
-        if (null == head || null == head.next) return false;
-        ListNode slow = head;
-        ListNode fast = head.next;
-        while (slow != fast) {
-            if (null == fast || null == fast.next) {
-                return false;
+        Set<ListNode> set = new LinkedHashSet<>();
+        while (head != null) {
+            if (set.contains(head)) {
+                return true;
             }
-            slow = slow.next;//慢指针走1步
-            fast = fast.next.next;//快指针走两部
+            set.add(head);
+            head = head.next;
         }
-        return true;
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
