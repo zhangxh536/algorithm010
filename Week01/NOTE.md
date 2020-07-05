@@ -135,3 +135,22 @@ java中的linklist是一个标准的双向链表
 4> 时间复杂度为O(logn)、空间复杂度为O(n)
 5> 跳表的索引维护成本较高,每删除和更新索引其他的都要全部更新一遍。
 跳表好比是单、双层电梯,每两层停一次一样
+
+4、栈和队列
+1> 栈是一种逻辑结构,是一种线性的数据结构,像一个兵乓球的圆筒,栈中的元素只能
+先进后出,first in last out FILO;
+2> 队列是一种线性数据结构,特征和单行隧道一样
+队列是先进先出 first in first out FIFO;
+3> 栈和队列的特点
+时间复杂度:插入和删除是O(1);由于stack是无序的,查询是O(n);
+4> 栈和队列的应用
+    双端队列:头和尾都能进行元素的出和入,无序 deque;
+        throws exception    special value
+intsert  add                    offer
+remove   remove                 poll
+         element                peek
+         抛异常的方式             返回特殊值的方式
+    优先队列
+ 1、插入操作 O(1)
+ 2、取出操作 O(logN)按优先级取出
+ 3、底层实现:heap、bst、treap等;
