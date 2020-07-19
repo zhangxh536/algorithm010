@@ -1,44 +1,62 @@
-//数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且 有效的 括号组合。
+//实现 pow(x, n) ，即计算 x 的 n 次幂函数。
+//
+// 示例 1:
+//
+// 输入: 2.00000, 10
+//输出: 1024.00000
 //
 //
+// 示例 2:
 //
-// 示例：
+// 输入: 2.10000, 3
+//输出: 9.26100
 //
-// 输入：n = 3
-//输出：[
-//       "((()))",
-//       "(()())",
-//       "(())()",
-//       "()(())",
-//       "()()()"
-//     ]
 //
-// Related Topics 字符串 回溯算法
+// 示例 3:
+//
+// 输入: 2.00000, -2
+//输出: 0.25000
+//解释: 2-2 = 1/22 = 1/4 = 0.25
+//
+// 说明:
+//
+//
+// -100.0 < x < 100.0
+// n 是 32 位有符号整数，其数值范围是 [−231, 231 − 1] 。
+//
+// Related Topics 数学 二分查找
 
-
-import com.sun.org.apache.xpath.internal.operations.String;
-
-import java.util.ArrayList;
-import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    private List<String> result;
-    public List<String> generateParenthesis(int n) {
-        result = new ArrayList<>();
-        _genarate(0,0,n,"");
-        return result;
+    public double myPow(double x, int n) {
+//        //循环法
+//        double res = 1;
+//        if (n < 0) {
+//           x = 1 / x;
+//           n = - n;
+//        }
+//        for (int i = 0; i < n; i++) {
+//                res = res * x;
+//        }
+//        return res;
+        //分治法------------------------
+        long N = n;
+        if (n < 0) {
+            x = 1 / x;
+            N = - N;
+        }
+        return fenzhi(x,N);
     }
-    private void _genarate(int left,int right,int n,String s) {
-        if (left == n && right == n) {
-            result.add(s);
-            return;
+    double fenzhi(double x, long n) {
+        if (n == 0) {
+            return 1.0;
         }
-        if (left < n) {
-            _genarate(left + 1,right,n,s + "(");
-        }
-        if (left > right) {
-            _genarate(left,right + 1,n,s + ")");
+        double half = fenzhi(x,n / 2);
+        if (n % 2 == 0) {
+            return half * half;
+        } else {
+            return half * half * x;
         }
     }
 }
